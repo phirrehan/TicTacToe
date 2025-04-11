@@ -1,4 +1,5 @@
 #include <SFML/Graphics.hpp>
+#include <SFML/Window/Mouse.hpp>
 
 int main() {
 
@@ -157,6 +158,7 @@ int main() {
           is_X_turn = true;
         }
       } else if (auto *mouse = event->getIf<sf::Event::MouseButtonReleased>()) {
+
         if (winner == ' ' && isMouseOver) {
           if (mouse->button == sf::Mouse::Button::Left &&
               state[cursor_y][cursor_x] == ' ') {
@@ -166,6 +168,16 @@ int main() {
               state[cursor_y][cursor_x] = 'O';
             is_X_turn = !(is_X_turn);
           }
+        }
+
+        if (mouse->button == sf::Mouse::Button::Right && winner != ' ') {
+          for (int j = 0; j < 3; j++)
+            for (int i = 0; i < 3; i++)
+              state[j][i] = ' ';
+          cursor_x = 1;
+          cursor_y = 1;
+          winner = ' ';
+          is_X_turn = true;
         }
       }
     }
