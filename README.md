@@ -2,27 +2,61 @@
 
 This is a simple TicTacToe made using C++ with SFML library. It can be played by compiling the main.cpp file.
 
-## Setup Guide
+## Installation Guide
+
+SFML is a multi platform library. It can work on many platforms like Windows, MacOS, and Linux. See their respective sections for the installation process.
 
 ### Windows
 
+You need to install and setup an IDE to compile the source code.
+
 #### IDE
 
-Install an IDE like Visual Studio or Code::Blocks. Also download the SFML SDK from this [link](https://www.sfml-dev.org/download/). Download the latest stable version.
+Install an IDE like Visual Studio or Code::Blocks.
 
-### SFML
+#### SFML
 
-After downloading, extract the archive to a location of your choice. It is recommended to keep the libraries in their seperate folders rather than copying them to IDE's directory.
+Download the SFML SDK from this [link](https://www.sfml-dev.org/download/). Download the latest stable version. Extract the archive to a location of your choice. It is recommended to keep the libraries in their seperate folders rather than copying them to IDE's directory.
 
-### Configuring IDE
+#### Configuring IDE
 
 If you are using Visual Studio, then see this [link](https://www.sfml-dev.org/tutorials/3.0/getting-started/visual-studio/#installing-sfml) for setting up SFML.
 
-If you are using Code::Blocks, then see this [link](https://www.sfml-dev.org/tutorials/3.0/getting-started/code-blocks/).
+If you are using Code::Blocks, then see this [link](https://www.sfml-dev.org/tutorials/3.0/getting-started/code-blocks/) for setting up SFML.
 
-### Compiling
+In case you do not use any of the aforementioned IDEs, refer to the their respective documentation for setting up SFML.
+
+#### Compiling
 
 Open main.cpp in the IDE of your choice. Compile and Run the program to play the game.
+
+### MacOS
+
+Install Homebrew if it's not already installed by running the following command on the terminal:
+
+```
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+```
+
+Install dependencies
+
+```
+brew install git gcc sfml make
+```
+
+Clone this repository and compile the source code
+
+```
+git clone https://github.com/phirrehan/TicTacToe.git
+cd TicTacToe
+make
+```
+
+Now run the binary file to play the game
+
+```
+./main
+```
 
 ### Linux
 
@@ -36,33 +70,17 @@ If SFML 3 is unavailable in your package manager's repository, then refer to the
 
 Clone this repository using git and compile the source code
 
-`git clone https://github.com/phirrehan/TicTacToe.git
+```
+git clone https://github.com/phirrehan/TicTacToe.git
 cd TicTacToe
-make`
+make
+```
 
 Now run the binary file to play the game
 
-`./main`
-
-### MacOS
-
-Install Homebrew if it's not already installed by running the following command on the terminal:
-
-`/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"`
-
-Install dependencies
-
-`brew install git gcc sfml make`
-
-Clone this repository and compile the source code
-
-`git clone https://github.com/phirrehan/TicTacToe.git
-cd TicTacToe
-make`
-
-Now run the binary file to play the game
-
-`./main`
+```
+./main
+```
 
 ## Controls
 
