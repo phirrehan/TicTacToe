@@ -7,14 +7,14 @@ int main() {
                        { ' ', ' ', ' ' },
                        { ' ', ' ', ' ' } };
 
-  // array for storing state of mouse cursor over grid cells
-  bool isMouseOver[9] = {}; // initialize all elements to 0 or false
-
   // position of cursor in middlel of grid
   int cursor_x = 1, cursor_y = 1;
 
   // turn
   bool is_X_turn = true;
+
+  // mouse over grid
+  bool isMouseOver = false;
 
   // winner
   char winner = ' '; // possible values are ' ', 'D', 'X', 'O' where D is draw
@@ -145,7 +145,7 @@ int main() {
         }
 
         // restart if R or Enter is pressed
-        if ((key->scancode == sf::Keyboard::Scancode::R ||
+        if ((key->scancode == sf::Keyboard::Scancode::Space ||
              key->scancode == sf::Keyboard::Scancode::Enter) &&
             winner != ' ') {
           for (int j = 0; j < 3; j++)
@@ -155,6 +155,17 @@ int main() {
           cursor_y = 1;
           winner = ' ';
           is_X_turn = true;
+        }
+      } else if (auto *mouse = event->getIf<sf::Event::MouseButtonReleased>()) {
+        if (winner == ' ' && isMouseOver) {
+          if (mouse->button == sf::Mouse::Button::Left &&
+              state[cursor_y][cursor_x] == ' ') {
+            if (is_X_turn)
+              state[cursor_y][cursor_x] = 'X';
+            else
+              state[cursor_y][cursor_x] = 'O';
+            is_X_turn = !(is_X_turn);
+          }
         }
       }
     }
@@ -167,8 +178,11 @@ int main() {
     // parameters
     float space = 0.3f * window_min, // size of a cell
         size = 0.8f * space,         // size of mark
-        width = 0.1f * size;         // width of line
+        width = 0.1f * size;         // width of shapes
+                             // width is also 2 * thickness of line/cursor
     auto mouse_position = sf::Vector2f(sf::Mouse::getPosition(window));
+    float gridStart_x = window_w / 2 - space * (1.5f),
+          gridStart_y = window_h / 2 - space * (1.5f);
 
     // fill window with color
     window.clear(sf::Color(39, 39, 39));
@@ -188,6 +202,27 @@ int main() {
                 window_h / 2 + space * (j - 1));
       }
     }
+
+    // set isMouseOver
+    if ((gridStart_x <= mouse_position.x &&
+         mouse_position.x <= gridStart_x + space * 3) and
+        (gridStart_y <= mouse_position.y &&
+         mouse_position.y <= gridStart_y + space * 3))
+      isMouseOver = true;
+    else
+      isMouseOver = false;
+
+    // move cursor with mouse
+    for (int r = 0; r < 3; r++)
+      for (int c = 0; c < 3; c++) {
+        if ((gridStart_x + space * c <= mouse_position.x &&
+             mouse_position.x <= gridStart_x + space * (c + 1)) and
+            (gridStart_y + space * r <= mouse_position.y &&
+             mouse_position.y <= gridStart_y + space * (r + 1))) {
+          cursor_x = c;
+          cursor_y = r;
+        }
+      }
 
     // draw winning line
     for (int i = 0; i < 3; i++) {
@@ -234,8 +269,8 @@ int main() {
   exit_loop:
 
     if (winner == ' ')
-      DrawCursor(space, width / 2, window_w / 2 + space * (cursor_x - 1),
-                 window_h / 2 + space * (cursor_y - 1));
+      DrawCursor(space, width / 2, gridStart_x + space * (cursor_x + 0.5f),
+                 gridStart_y + space * (cursor_y + 0.5f));
 
     // display
     window.display();
