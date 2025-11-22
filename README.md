@@ -1,90 +1,78 @@
 # TicTacToe(SFML)
 
-This is a simple TicTacToe made using C++ with SFML library. It can be played by compiling the main.cpp file. This is a 2 player game. No computer gameplay is available at the moment. Here are some screenshots.
+This is a simple TicTacToe made using C++ with external library SFML. Due to SFML, the game is cross-platform. It can be played on Windows, Linux, and MacOS. Only player vs player gameplay is available as of yet.
 
 <img width="828" height="652" alt="Screenshot1" src="https://github.com/user-attachments/assets/b11cd68a-ef0e-40d8-a4a4-840b7f530840" />
+
 <img width="828" height="652" alt="Screenshot2" src="https://github.com/user-attachments/assets/72d551c8-aaf6-4da4-be60-8382e447e993" />
+
 <img width="828" height="652" alt="Screenshot3" src="https://github.com/user-attachments/assets/a46d02db-2697-42c8-b535-3d9f5e48fc99" />
 
-# Installation Guide
+# Dependencies
 
-SFML is a multi platform library. It can work on many platforms like Windows, MacOS, and Linux. See their respective sections for the installation process.
+- C++ Compiler
+- CMake
 
-## Windows
+## SFML Dependencies
 
-You need to install and setup an IDE to compile the source code.
+These dependencies are for Linux users:
 
-### IDE
+- freetype
+- x11
+- xrandr
+- xcursor
+- xi
+- udev
+- opengl
+- flac
+- ogg
+- vorbis
+- vorbisenc
+- vorbisfile
+- pthread
 
-Install an IDE like Visual Studio or Code::Blocks.
+> Note: The exact name of packages will vary from distribution to distribution.
 
-### SFML
-
-Download the SFML SDK from this [link](https://www.sfml-dev.org/download/). Download the latest stable version. Extract the archive to a location of your choice. It is recommended to keep the libraries in their seperate folders rather than copying them to IDE's directory.
-
-### Configuring IDE
-
-If you are using Visual Studio, then see this [link](https://www.sfml-dev.org/tutorials/3.0/getting-started/visual-studio/#installing-sfml) for setting up SFML.
-
-If you are using Code::Blocks, then see this [link](https://www.sfml-dev.org/tutorials/3.0/getting-started/code-blocks/) for setting up SFML.
-
-In case you do not use any of the aforementioned IDEs, refer to the their respective documentation for setting up SFML.
-
-### Compiling
-
-Open main.cpp in the IDE of your choice. Compile and Run the program to play the game.
-
-## MacOS
-
-Install Homebrew if it's not already installed by running the following command on the terminal:
+For Ubuntu or Debian based OSes, the dependencies can be installed with the following command:
 
 ```
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+sudo apt update
+sudo apt install \
+    libxrandr-dev \
+    libxcursor-dev \
+    libxi-dev \
+    libudev-dev \
+    libfreetype-dev \
+    libflac-dev \
+    libvorbis-dev \
+    libgl1-mesa-dev \
+    libegl1-mesa-dev \
+    libfreetype-dev
 ```
 
-Install dependencies
+# Usage Guide
 
-```
-brew install git gcc sfml make
-```
+## Download Source Code
 
-Clone this repository and compile the source code
-
-```
-git clone https://github.com/phirrehan/TicTacToe.git
-cd TicTacToe
-make
-```
-
-Now run the binary file to play the game
-
-```
-./main
-```
-
-## Linux
-
-Install the following dependencies using your distribution's package manager:
-
-`git gcc sfml make`
-
-> Note: package name for SFML could be different in your package manager's repository
-
-If SFML 3 is unavailable in your package manager's repository, then refer to the SFML [documentation](https://www.sfml-dev.org/tutorials/3.0/getting-started/linux/#introduction).
-
-Clone this repository using git and compile the source code
+Download the source code from the github repository or using git:
 
 ```
 git clone https://github.com/phirrehan/TicTacToe.git
 cd TicTacToe
-make
 ```
 
-Now run the binary file to play the game
+## Compile
+
+Open terminal/powershell and run the following command in root of project:
+
+> Note: Ensure you have the C++ compiler and cmake in PATH environment variable.
 
 ```
-./main
+cmake -B build
+cmake --build build
 ```
+
+The compilation may take some time as it builds SFML from source. After completion, execute the binary in `build/bin/main`.
 
 # Controls
 
